@@ -1,0 +1,877 @@
+:root {
+  --bg-yellow: #FFDC58;
+  --yellow: #FFE86B;
+  --pink: #FF90E8;
+  --green: #4DE69A;
+  --purple: #A78BFA;
+  --red: #FF6B6B;
+  --black: #111111;
+  --white: #FFFFFF;
+  --cream: #FFF8DC;
+
+  --border-w: 3px;
+  --border: var(--border-w) solid var(--black);
+  --radius: 10px;
+  --radius-sm: 7px;
+  --shadow: 6px 6px 0 var(--black);
+  --shadow-sm: 4px 4px 0 var(--black);
+
+
+  --font-main: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+}
+
+/* ------------------------- Reset & dasar ------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, p, dl, dd {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  font-family: var(--font-main);
+  line-height: 1.5;
+  color: var(--black);
+  background-color: var(--bg-yellow);
+}
+
+a[href],
+button:not(:disabled),
+summary,
+select,
+label[for] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app {
+  width: 100%;
+  max-width: 880px;
+}
+
+/* ------------------------- Card utama ------------------------- */
+.card {
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.card-head {
+  padding: 28px 24px;
+  text-align: center;
+  border-bottom: var(--border);
+}
+
+.card-head--pink  { background: var(--pink); }
+.card-head--green { background: var(--green); }
+
+.card-body {
+  padding: 28px 24px;
+}
+
+.head-icon {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+}
+
+.head-icon--round {
+  border-radius: 50%;
+  background: var(--yellow);
+}
+
+.title {
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: clamp(1.55rem, 4.2vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.title:focus {
+  outline: none;
+}
+
+.subtitle {
+  margin-top: 8px;
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+
+/* ------------------------- Form login ------------------------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 0.96rem;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 16px 14px 46px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--black);
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.input::placeholder {
+  color: #5f5f5f;
+  font-weight: 500;
+}
+
+.input:focus {
+  background: var(--cream);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+  outline: 3px dashed var(--black);
+  outline-offset: 3px;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  font-weight: 700;
+  font-size: 0.94rem;
+  border: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.alert--error {
+  background: var(--red);
+}
+
+/* ------------------------- Tombol ------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 13px 24px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--black);
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+}
+
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--black);
+}
+
+.btn:focus-visible {
+  outline: 3px dashed var(--black);
+  outline-offset: 4px;
+}
+
+.btn--yellow { background: var(--yellow); }
+.btn--yellow:hover { background: var(--pink); }
+.btn--green  { background: var(--green); }
+.btn--green:hover { background: var(--yellow); }
+.btn--red    { background: var(--red); }
+.btn--red:hover { background: var(--yellow); }
+.btn--purple { background: var(--purple); }
+.btn--purple:hover { background: var(--yellow); }
+
+.btn--block {
+  width: 100%;
+}
+
+/* ------------------------- Tag & Chip statis ------------------------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  border: 2px solid var(--black);
+  border-radius: 6px;
+}
+
+.tag--black  { background: var(--black); color: var(--white); }
+.tag--purple { background: var(--purple); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.chip--pink   { background: var(--pink); }
+.chip--yellow { background: var(--yellow); }
+
+/* ------------------------- Halaman kuis ------------------------- */
+.quiz {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Header identitas mahasiswa (dropdown) */
+.identity-landmark {
+  margin: 0;
+}
+
+.identity-toggle {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  min-height: 56px;
+  padding: 12px 18px;
+  background: var(--purple);
+  transition: background-color 0.12s ease;
+}
+
+.identity-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.identity-toggle:hover {
+  background: #B79CFF;
+}
+
+.identity-toggle:focus-visible {
+  outline: 3px dashed var(--black);
+  outline-offset: -5px;
+}
+
+.identity-summary-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.identity-owner {
+  font-weight: 700;
+  font-size: 0.94rem;
+}
+
+.identity-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  background: var(--white);
+  border: 2px solid var(--black);
+  border-radius: var(--radius-sm);
+  box-shadow: 3px 3px 0 var(--black);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.identity-toggle:hover .identity-btn {
+  background: var(--yellow);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.identity-toggle:active .identity-btn {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--black);
+}
+
+.identity-btn-close {
+  display: none;
+}
+
+.identity[open] .identity-toggle {
+  border-bottom: var(--border);
+}
+
+.identity[open] .identity-btn-open {
+  display: none;
+}
+
+.identity[open] .identity-btn-close {
+  display: inline;
+}
+
+.identity-chevron {
+  transition: transform 0.2s ease;
+}
+
+.identity[open] .identity-chevron {
+  transform: rotate(180deg);
+}
+
+.identity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+  padding: 16px 18px;
+  background: var(--white);
+}
+
+.identity-item {
+  padding: 8px 12px;
+  background: var(--cream);
+  border: 2px solid var(--black);
+  border-radius: var(--radius-sm);
+}
+
+.identity-item dt {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #3a3a3a;
+}
+
+.identity-item dd {
+  font-weight: 700;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+/* Header informasi peserta kuis (dari form login) */
+.participant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 18px;
+  background: var(--white);
+}
+
+.participant-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: var(--cream);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.participant-text {
+  min-width: 0;
+}
+
+.participant-label {
+  display: inline-block;
+  margin-bottom: 2px;
+  padding: 2px 8px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--black);
+  border-radius: 4px;
+}
+
+.participant-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.participant-nim {
+  font-weight: 600;
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.participant-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Progress bar */
+.progress {
+  padding: 10px 18px 14px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-track {
+  height: 20px;
+  background: var(--cream);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 10%;
+  height: 100%;
+  background: var(--pink);
+  border-right: var(--border);
+  transition: width 0.25s ease;
+}
+
+/* Pertanyaan (titik fokus utama layar kuis) */
+.question-card {
+  margin-top: 6px;
+  padding: 26px 24px 28px;
+}
+
+.question-text {
+  margin: 14px 0 22px;
+  font-size: clamp(1.12rem, 2.7vw, 1.38rem);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.question-text:focus {
+  outline: none;
+}
+
+/* 6 pilihan jawaban */
+.options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.option {
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 14px;
+  font: inherit;
+  text-align: left;
+  color: var(--black);
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.option:hover:not(:disabled) {
+  background: var(--cream);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+}
+
+.option:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--black);
+}
+
+.option:focus-visible {
+  outline: 3px dashed var(--black);
+  outline-offset: 3px;
+}
+
+.option-badge {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1rem;
+  background: var(--yellow);
+  border: var(--border);
+  border-radius: 6px;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.option:hover:not(:disabled) .option-badge {
+  background: var(--black);
+  color: var(--white);
+}
+
+.option-text {
+  font-weight: 600;
+  font-size: 0.97rem;
+  overflow-wrap: anywhere;
+}
+
+/* Status jawaban salah (dinonaktifkan) */
+.option.is-wrong {
+  background: #FFD3D3;
+  opacity: 0.78;
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--black);
+}
+
+.option.is-wrong .option-text {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.option.is-wrong .option-badge {
+  background: var(--red);
+}
+
+/* Status jawaban benar (hijau khusus semantik benar) */
+.option.is-correct {
+  background: var(--green);
+}
+
+.option.is-correct .option-badge {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ------------------------- Pop-up modal ------------------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(17, 17, 17, 0.65);
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 540px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: 8px 8px 0 var(--black);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: var(--border);
+}
+
+.modal-header--correct { background: var(--green); }
+.modal-header--wrong   { background: var(--red); }
+
+.modal-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.modal-title {
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.modal-subtitle {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.modal-text {
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.modal-text p + p {
+  margin-top: 8px;
+}
+
+.modal-muted {
+  font-size: 0.92rem;
+  color: #333333;
+}
+
+.explain-box {
+  padding: 14px 16px;
+  background: var(--cream);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.explain-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--purple);
+  border: 2px solid var(--black);
+  border-radius: 5px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ------------------------- Halaman hasil ------------------------- */
+.result-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.summary {
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+  padding: 14px 16px;
+}
+
+.summary-row + .summary-row {
+  border-top: var(--border);
+}
+
+.summary-row:nth-child(odd) {
+  background: var(--cream);
+}
+
+.summary-label {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.summary-value {
+  font-weight: 700;
+  font-size: 1.08rem;
+  overflow-wrap: anywhere;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.wrong-count {
+  padding: 4px 14px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+  background: var(--pink);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.feedback-box {
+  padding: 16px 18px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.55;
+  background: var(--cream);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* ------------------------- Animasi (UX terarah) ------------------------- */
+/* Animasi getar hanya saat validasi input login belum lengkap */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.animate-shake {
+  animation: shake 0.35s ease-in-out;
+}
+
+/* ------------------------- Scrollbar ------------------------- */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-yellow);
+  border-left: 3px solid var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--black);
+  border: 2px solid var(--bg-yellow);
+  border-radius: 6px;
+}
+
+/* ------------------------- Responsif ------------------------- */
+@media (min-width: 720px) {
+  .options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --shadow: 4px 4px 0 var(--black);
+    --shadow-sm: 3px 3px 0 var(--black);
+  }
+
+  body {
+    align-items: flex-start;
+    padding: 16px 12px 24px;
+  }
+
+  .card-head,
+  .card-body,
+  .question-card {
+    padding: 20px 16px;
+  }
+
+  .identity-toggle,
+  .participant {
+    padding: 12px 14px;
+  }
+
+  .identity-grid {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .participant {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

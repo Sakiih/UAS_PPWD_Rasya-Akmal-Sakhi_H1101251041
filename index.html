@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Rekayasa Perangkat Lunak</title>
+  <!-- Memuat Google Fonts: Space Grotesk untuk seluruh tipografi -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Memuat FontAwesome untuk ikon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Memuat CSS Eksternal -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Container Utama -->
+  <main class="app">
+    <h1 class="sr-only">Kuis Rekayasa Perangkat Lunak</h1>
+
+    <!-- 1. LAYAR LOGIN (NAMA & NIM PESERTA KUIS) -->
+    <section id="login-screen" class="card" aria-labelledby="login-title">
+      <div class="card-head card-head--pink">
+        <div class="head-icon">
+          <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+        </div>
+        <h2 id="login-title" class="title">Kuis Rekayasa Perangkat Lunak</h2>
+        <p class="subtitle">Uji pemahamanmu seputar konsep RPL dan pemodelan UML (10 Soal)</p>
+      </div>
+
+      <form id="login-form" class="card-body form" novalidate>
+        <!-- Pesan Peringatan Validasi Input -->
+        <div id="login-error" class="alert alert--error hidden" role="alert">
+          <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+          <span>Harap isi Nama Peserta dan NIM Peserta terlebih dahulu!</span>
+        </div>
+
+        <div class="field">
+          <label for="input-nama" class="field-label">Nama Peserta Kuis</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+            <input type="text" id="input-nama" class="input" placeholder="Masukkan nama peserta..." autocomplete="off">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="input-nim" class="field-label">NIM Peserta Kuis</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+            <input type="text" id="input-nim" class="input" placeholder="Masukkan NIM peserta..." autocomplete="off">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--yellow btn--block">
+          <span>Masuk &amp; Mulai Kuis</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </form>
+    </section>
+
+    <!-- 2. LAYAR KUIS (10 SOAL & 6 PILIHAN JAWABAN) -->
+    <section id="quiz-screen" class="quiz hidden" aria-label="Halaman Kuis">
+
+      <!-- A. Header Identitas Mahasiswa (dropdown identitas tetap pemilik tugas, TIDAK diambil dari form login) -->
+      <header class="identity-landmark">
+        <details id="identity-dropdown" class="card identity">
+          <summary class="identity-toggle">
+            <div class="identity-summary-left">
+              <span class="tag tag--black">
+                <i class="fa-solid fa-id-badge" aria-hidden="true"></i>
+                Identitas Mahasiswa
+              </span>
+              <span class="identity-owner">Pemilik Tugas</span>
+            </div>
+            <span class="identity-btn">
+              <span class="identity-btn-open">Lihat Identitas</span>
+              <span class="identity-btn-close">Tutup</span>
+              <i class="fa-solid fa-chevron-down identity-chevron" aria-hidden="true"></i>
+            </span>
+          </summary>
+
+          <dl class="identity-grid">
+            <div class="identity-item">
+              <dt>Nama</dt>
+              <dd>Rasya Akmal Sakhi</dd>
+            </div>
+            <div class="identity-item">
+              <dt>NIM</dt>
+              <dd>H1101251041</dd>
+            </div>
+            <div class="identity-item">
+              <dt>Mata Kuliah</dt>
+              <dd>Praktikum Pemrograman Web Dasar</dd>
+            </div>
+            <div class="identity-item">
+              <dt>Program Studi</dt>
+              <dd>Sistem Informasi</dd>
+            </div>
+            <div class="identity-item">
+              <dt>Fakultas</dt>
+              <dd>Matematika dan Ilmu Pengetahuan Alam (FMIPA)</dd>
+            </div>
+            <div class="identity-item">
+              <dt>Universitas</dt>
+              <dd>Universitas Tanjungpura</dd>
+            </div>
+            <div class="identity-item">
+              <dt>Semester</dt>
+              <dd>3</dd>
+            </div>
+            <div class="identity-item">
+              <dt>Dosen Pengampu</dt>
+              <dd>Ferdy Febriyanto, S.Kom, M.Kom</dd>
+            </div>
+          </dl>
+        </details>
+      </header>
+
+      <!-- B. Header Informasi Peserta Kuis (data dari form login) -->
+      <div class="card participant">
+        <div class="participant-info">
+          <div class="avatar">
+            <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
+          </div>
+          <div class="participant-text">
+            <span class="participant-label">Mahasiswa Kuis</span>
+            <p id="display-nama" class="participant-name">Nama Peserta</p>
+            <p id="display-nim" class="participant-nim">NIM: -</p>
+          </div>
+        </div>
+
+        <div class="participant-stats">
+          <span class="chip chip--pink">
+            <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i>
+            Salah: <strong id="wrong-counter-badge">0</strong>
+          </span>
+          <span class="chip chip--yellow">
+            Soal <span id="current-question-num">1</span> / 10
+          </span>
+        </div>
+      </div>
+
+      <!-- C. Progress Bar -->
+      <div class="progress">
+        <div class="progress-top">
+          <span>Progress Pengerjaan</span>
+          <span id="progress-text">10%</span>
+        </div>
+        <div id="progress-track" class="progress-track" role="progressbar" aria-label="Progress pengerjaan soal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10">
+          <div id="progress-bar" class="progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- D. Kategori, Pertanyaan & 6 Pilihan Jawaban -->
+      <div class="card question-card">
+        <span id="question-category" class="tag tag--purple">Kategori</span>
+
+        <h2 id="question-text" class="question-text" tabindex="-1">Memuat pertanyaan...</h2>
+
+        <!-- Grid 6 Pilihan Jawaban (1 kolom di HP, 2 kolom di laptop) -->
+        <div id="options-container" class="options">
+          <!-- Tombol pilihan A - F akan di-render melalui JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. LAYAR HASIL AKHIR -->
+    <section id="result-screen" class="card hidden" aria-labelledby="result-title">
+      <div class="card-head card-head--green">
+        <div class="head-icon head-icon--round">
+          <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+        </div>
+        <h2 id="result-title" class="title" tabindex="-1">Kuis Selesai!</h2>
+        <p class="subtitle">Terima kasih telah menyelesaikan seluruh pertanyaan.</p>
+      </div>
+
+      <div class="card-body result-body">
+        <!-- Kartu Ringkasan Data Peserta -->
+        <div class="summary">
+          <div class="summary-row">
+            <span class="summary-label">Nama Peserta Kuis</span>
+            <span id="result-nama" class="summary-value">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">NIM Peserta Kuis</span>
+            <span id="result-nim" class="summary-value tabular">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Total Jawaban Salah</span>
+            <span id="result-wrong-count" class="wrong-count">0 Kali</span>
+          </div>
+        </div>
+
+        <!-- Pesan Evaluasi Singkat -->
+        <div id="result-feedback-box" class="feedback-box">
+          Evaluasi hasil akan muncul di sini.
+        </div>
+
+        <!-- Tombol Kembali ke Awal -->
+        <button id="btn-restart" type="button" class="btn btn--purple btn--block">
+          <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+          <span>Kembali ke Awal</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- POP-UP MODAL (UNTUK JAWABAN SALAH & JAWABAN BENAR) -->
+  <div id="feedback-modal" class="modal hidden">
+    <div id="modal-box" class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body-text">
+      <!-- Header Modal -->
+      <div id="modal-header" class="modal-header">
+        <div class="modal-icon">
+          <i id="modal-icon" class="fa-solid fa-check" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h3 id="modal-title" class="modal-title">Judul Pop-up</h3>
+          <p id="modal-subtitle" class="modal-subtitle">Subjudul status jawaban</p>
+        </div>
+      </div>
+
+      <!-- Isi Modal -->
+      <div class="modal-body">
+        <div id="modal-body-text" class="modal-text">
+          Penjelasan materi akan muncul di sini.
+        </div>
+
+        <!-- Tombol Aksi Modal -->
+        <div class="modal-actions">
+          <button id="modal-action-btn" type="button" class="btn">
+            <span id="modal-btn-text">Lanjut</span>
+            <i id="modal-btn-icon" class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Memuat JavaScript Eksternal -->
+  <script src="script.js"></script>
+</body>
+</html>
